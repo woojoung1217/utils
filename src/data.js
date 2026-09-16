@@ -45,9 +45,34 @@ export const profile = {
         '현장 엔지니어링 과정에서 계통도·태그 목록과 실제 설비 데이터를 대조하고 오표기·통신 누락 사항을 수정',
         '고객 요구사항을 운영 화면과 기능에 반영하고 배포 이후 데이터·화면 이상 여부를 확인하며 서비스 안정화 지원',
         'Twentyoz Tech Blog의 공개 웹·Admin·백엔드 기능을 개발하고 운영 환경에 배포',
+        '세기P&C 통합 온라인 플랫폼 세기몰의 PC·모바일 UI 구축 및 운영 유지보수',
       ],
       tags: ['React', 'TypeScript', 'JavaScript', 'NestJS', 'MySQL', 'EMS', 'InfoU', 'Modbus', 'Internal Network', 'GitLab'],
       projects: [
+        {
+          title: '영암 태양광·ESS EMS',
+          type: '에너지 관리 시스템 고도화 · 풀스택 개발 및 릴리즈 엔지니어링',
+          description: '태양광 발전 설비와 ESS의 발전·충방전 현황, 계통 상태, 설비 알람 및 운전 이력을 통합 모니터링하는 EMS입니다. 기존 운영 시스템의 데이터와 화면 동작을 분석해 React·NestJS 기반 서비스로 고도화하고, 내부망 설치를 위한 배포 체계까지 구축했습니다.',
+          contributions: [
+            'React 기반 메인 대시보드에 GIS·PV·ESS 전력, 일사량과 SOC 실시간 시계열을 통합하고 ECharts 다축 차트·확대·다운로드 기능 구현',
+            '태양광·ESS 운전 현황 화면의 일별 캘린더, 발전량 요약과 설비별 시계열 조회 UI 개발',
+            'NestJS 백엔드에 EMS 상태 조회 API와 1분 주기 데이터 수집 Worker를 구현하고 분 단위 스냅샷을 누적 저장',
+            'Drizzle ORM 기반 스키마와 Repository를 구성해 SQLite·PostgreSQL 환경에서 동일한 상태 이력 기능 지원',
+            'XD Runtime의 설비·태그·Historian 데이터를 연동하고 개발 환경에서도 운영 Runtime을 안전하게 조회할 수 있도록 요청 경로와 프로젝트 헤더 처리 구성',
+            '2D 계통도와 설비 상세 모달을 연결하고 선택한 설비의 태그 그룹을 동적으로 바인딩하는 Runtime Function 구조 구현',
+            'HV 계측·보호·통신 상태와 PV 접속반 알람을 실제 태그 구조에 맞춰 작화하고 결측·통신 오류 시 오래된 값을 정상값처럼 표시하지 않도록 안전 처리',
+            'PV 발전량과 ESS 충·방전량의 일·주·월·년 파생 태그 및 기간 기준값 로직을 설계하고 등록·검증 자동화 스크립트 작성',
+            'Docker 멀티 스테이지 빌드와 GitLab CI를 구성해 이미지 빌드·레지스트리 릴리즈·헬스 체크 기반 배포 자동화',
+            '외부 인터넷이 제한된 Windows 내부망 설치를 위해 UI·API·Node Runtime을 묶은 번들과 NSIS 설치 프로그램, NSSM 서비스 등록 및 기동 검증 절차 구성',
+          ],
+          technicalNotes: [
+            { label: '실시간 데이터 파이프라인', value: 'XD Runtime 계측값을 분 단위로 수집·저장하고 조회 기간에 맞게 집계해 대시보드와 운전 현황 차트에 전달' },
+            { label: '산업 데이터 신뢰성', value: '구 시스템 정의, 계통도, 태그 목록과 실제 Runtime 값을 대조하고 null·비수치·통신 오류를 구분해 잘못된 정상 상태 표시 방지' },
+            { label: '동적 설비 화면', value: '공통 2D 도면에 선택 설비의 태그 그룹과 페이지 파라미터를 주입해 여러 설비 상세 화면에서 재사용' },
+            { label: '내부망 릴리즈', value: 'Docker와 Windows 설치형 배포를 모두 지원하고 환경 설정, 데이터 영속화, 서비스 자동 재시작과 API Health Check로 설치 안정성 확보' },
+          ],
+          stack: ['React 19', 'TypeScript', 'TanStack Query', 'TanStack Router', 'ECharts', 'Ant Design', 'Panda CSS', 'NestJS', 'Drizzle ORM', 'SQLite', 'PostgreSQL', 'Docker', 'GitLab CI', 'Bun', 'Turbo', 'XD Runtime', 'NSIS', 'NSSM'],
+        },
         {
           title: '홋카이도 태양광 EMS',
           type: 'LS ELECTRIC 협력 프로젝트 · 풀스택 개발 및 현장 엔지니어링',
@@ -89,6 +114,24 @@ export const profile = {
           ],
           stack: ['React', 'TypeScript', 'TanStack Query', 'Ant Design', 'NestJS', 'Prisma', 'MySQL', 'Docker', 'SSR', 'SEO', 'RSS', 'GitLab'],
         },
+        {
+          title: '세기몰 (SAEKI)',
+          type: '세기P&C 이커머스 · 라이브 서비스 운영',
+          url: 'https://www.saeki.co.kr/',
+          description: '카메라·렌즈·촬영 장비 판매와 브랜드 콘텐츠, 이벤트, 정품등록 및 매장 안내를 제공하는 세기P&C의 실제 운영 중인 통합 온라인 플랫폼입니다. PC·모바일 신규 화면 구축과 운영 UI 유지보수를 담당했습니다.',
+          contributions: [
+            'PC·모바일 매장 안내 및 상세 페이지를 신규 구축하고 브랜드·상품 탐색 인터랙션 구현',
+            '상품 필터와 예약판매·배송 안내, GNB 메가 메뉴 등 주요 쇼핑 UI 개선',
+            '이벤트·전시·고객지원·정품등록·정책 페이지를 PC·모바일 환경에 제작 및 적용',
+            '백오피스 에디터 콘텐츠의 스타일 충돌과 주문결제·슬라이더·레이아웃 오류 해결',
+            '운영 요청을 반영하며 PC·모바일 간 UI 일관성과 콘텐츠 가독성 지속 개선',
+          ],
+          technicalNotes: [
+            { label: '라이브 서비스 유지보수', value: '기존 jQuery 구조와 구매 흐름의 영향을 확인하며 기능을 추가하고 운영 중 발생한 UI 회귀와 노출 오류를 수정' },
+            { label: 'PC·모바일 이원화 대응', value: '별도 마크업으로 운영되는 두 환경의 기능과 콘텐츠를 맞추고 백오피스 HTML의 스타일 충돌을 보정' },
+          ],
+          stack: ['HTML5', 'CSS3', 'JavaScript', 'jQuery', 'Swiper', 'Git', 'GitLab'],
+        },
       ],
       current: true,
     },
@@ -109,18 +152,22 @@ export const profile = {
       projects: [
         {
           title: 'BAX',
-          type: '웹 접근성 분석 SaaS',
-          description: 'URL 입력만으로 WCAG 기반 접근성 진단 결과와 위반 지점을 제공하는 서비스입니다.',
+          type: '웹 접근성 자동 진단 SaaS · 프론트엔드 개발',
+          description: '사용자가 URL을 입력하면 Puppeteer 기반 크롤링 결과를 WCAG 기준으로 분석하고, 접근성 위반 항목과 실제 발생 위치를 시각적으로 제공하는 서비스입니다.',
           contributions: [
-            '접근성 위반 요소를 캡처 화면과 HTML 코드 트리뷰에 동시에 표시하는 UI 및 상태 연동',
-            'Vue i18n 기반 한국어·영어·일본어 다국어 지원',
-            'TanStack Query 캐싱을 적용해 중복 API 요청과 서버 상태 관리 복잡도 개선',
+            'Vue 3 Composition API와 TypeScript 기반으로 진단 결과, 위반 항목 상세 및 필터 UI 개발',
+            '위반 요소 선택 시 캡처 이미지의 좌표와 HTML 코드 트리 노드를 함께 활성화하는 양방향 탐색 흐름 구현',
+            '캡처 화면과 코드 트리에서 문제 위치를 바로 비교하도록 개선해 위반 지점 확인 소요 시간 약 40% 단축',
+            'Vue i18n 기반 한국어·영어·일본어 다국어 리소스와 화면 전환 기능 구현',
+            '회원가입·로그인, 이메일 인증과 인증 상태에 따른 접근 제어 UI 구현',
+            'Vue TanStack Query의 query key와 캐시 정책을 정리해 불필요한 API 호출량 약 25% 감소 및 로딩 경험 개선',
           ],
           technicalNotes: [
-            { label: '상태 동기화', value: '동일한 위반 데이터를 캡처 좌표와 HTML 노드에 연결해 서로 다른 뷰에서도 같은 문제 지점을 탐색하도록 구현' },
-            { label: '서버 상태 관리', value: '조회 데이터의 캐시 정책을 적용해 반복 요청을 줄이고 로딩·오류 상태 처리 방식을 일관되게 구성' },
+            { label: '복합 뷰 동기화', value: '위반 항목 ID를 기준으로 진단 목록, 캡처 좌표와 HTML 노드 상태를 연결해 서로 다른 표현에서도 동일한 문제를 추적' },
+            { label: '비동기 상태 최적화', value: '진단 결과와 상세 조회의 query key·stale 상태를 구분하고 로딩·오류 처리를 공통화해 중복 요청과 화면 분기 축소' },
+            { label: '접근성 도메인 UI', value: 'WCAG 위반 기준과 영향도를 사용자가 이해할 수 있도록 계층화하고 코드·화면 근거를 함께 제공' },
           ],
-          stack: ['Vue 3', 'Composition API', 'TypeScript', 'Vue i18n', 'TanStack Query'],
+          stack: ['Vue 3', 'Composition API', 'TypeScript', 'TanStack Query', 'Vue i18n', 'Puppeteer Result', 'WCAG', 'Web Accessibility'],
         },
         {
           title: 'Eagle M',
@@ -128,7 +175,7 @@ export const profile = {
           description: '고객과 연락처, 회원 권한, 견적 및 결제 내역을 통합 관리하는 사내 시스템입니다.',
           contributions: [
             '고객·회원·권한 관리와 견적·결제 확인 기능 고도화',
-            '서비스별 가격과 산정 내역을 PDF 견적서로 자동 생성',
+            '서비스별 가격과 산정 내역을 PDF 견적서로 자동 생성해 평균 작성 시간을 15분에서 1분 이내로 단축',
             '공통 UI 컴포넌트 정리와 TypeScript 타입 안정성 강화',
           ],
           technicalNotes: [
@@ -152,6 +199,52 @@ export const profile = {
       ],
     },
   ],
+  personalProjects: [
+    {
+      period: '2024. 10 — 2025. 05',
+      title: 'TOUCHEESE',
+      subtitle: '사진관 검색·예약 중개 플랫폼',
+      description: '취향에 맞는 스튜디오를 탐색하고 예약과 촬영 정보를 관리할 수 있는 반응형 웹 서비스입니다.',
+      contributions: [
+        'React Helmet 메타 태그, 시맨틱 마크업, robots.txt와 sitemap.xml을 적용해 SPA 검색 노출 환경 개선',
+        '매장 옵션·가격 필터 선택을 URL 쿼리 파라미터와 전역 상태에 동기화하는 커스텀 Hook 설계',
+        '정규표현식 기반 동적 입력 검증 NPM 라이브러리를 제작·배포해 프로젝트의 검증 규칙을 일관되게 적용',
+        'AWS S3와 CloudFront로 이미지 콘텐츠를 제공하고 GitHub Actions 기반 배포 자동화 구성',
+        'Vitest로 사용자 입력과 렌더링을 검증하는 UI 컴포넌트 단위 테스트 작성',
+      ],
+      outcomes: ['NPM 다운로드 180+회', '반응형 웹', 'CI/CD 자동화'],
+      stack: ['React', 'TypeScript', 'Zustand', 'TanStack Query', 'Emotion', 'Vitest', 'AWS S3', 'CloudFront', 'GitHub Actions'],
+    },
+    {
+      period: '2024. 07 — 2024. 09',
+      title: 'Highlightalk',
+      subtitle: '메신저 대화 내용 AI 분석 서비스',
+      description: 'CSV·TXT 메신저 대화를 구조화하고 GPT-4o mini로 분석해 관계와 대화 지표를 시각화하는 서비스입니다.',
+      contributions: [
+        '파일 형식에 맞춰 대화 내용을 파싱하고 분석 가능한 JSON 데이터로 변환하는 업로드 흐름 구현',
+        '정규표현식 전처리로 불필요한 대화를 제거해 평균 입력 토큰을 19,000+개에서 5,700+개로 70% 이상 절감',
+        'JSON 기반 프롬프트와 응답 구조를 적용해 분석 결과의 형식과 처리 흐름을 일관되게 구성',
+        'Dynamic Import와 캐싱 전략으로 불필요한 렌더링을 줄여 Lighthouse 성능 점수를 55에서 89로 개선',
+        '분석 결과와 커뮤니티 페이지 UI 및 Chart.js·D3 기반 데이터 시각화 구현',
+      ],
+      outcomes: ['입력 토큰 70%+ 절감', 'Lighthouse 55 → 89', 'AI 분석 파이프라인'],
+      stack: ['Next.js', 'TypeScript', 'GPT-4o mini', 'Zustand', 'Chart.js', 'D3', 'SCSS', 'AWS EC2', 'Vercel'],
+    },
+    {
+      period: '2024. 09 — 2024. 11',
+      title: 'WISH',
+      subtitle: '난임 부부를 위한 AI 심리 상담·케어 서비스',
+      description: '난임 및 우울증 상담센터의 접근성을 높이기 위해 AI 기반 상담과 심리 지표 시각화를 모바일 환경으로 구현한 서비스입니다.',
+      contributions: [
+        '요구사항 분석, 사용자 흐름과 ERD 설계를 통해 서비스 기능 및 데이터 관계 정의',
+        '쿼리스트링 기반 회원가입을 Funnel 구조와 커스텀 Hook으로 개선해 가입 시간을 약 20초에서 10초로 단축',
+        'API 응답 타입을 명확히 정의해 상담 데이터 처리의 안정성과 코드 가독성 개선',
+        '5개 주요 심리 지표를 레이더·캔들 차트로 시각화하고 사용자 맞춤 결과 화면 구현',
+      ],
+      outcomes: ['고용노동부 장관상', '가입 시간 50% 단축', 'AI 상담 경험 설계'],
+      stack: ['React', 'TypeScript', 'OpenAI API', 'Zustand', 'Emotion', 'Chart.js'],
+    },
+  ],
   activities: [
     {
       period: '2024. 10 — 2025. 01',
@@ -168,6 +261,11 @@ export const profile = {
       title: '멋쟁이사자처럼 프론트엔드 심화',
       description: 'Next.js 기반 AI 분석 서비스를 팀으로 개발하며 파일 업로드, GPT 결과 생성, 데이터 시각화, 위치 기반 기능과 성능 최적화를 구현했습니다.',
     },
+    {
+      period: '2023. 12 — 2024. 05',
+      title: 'JavaScript 스터디 타닥타닥 · 팀장',
+      description: '6명 규모의 스터디를 운영하며 주 3회 학습 내용을 발표하고 Context, Closure, Event Loop 등 JavaScript 핵심 원리를 실습 예제와 함께 탐구했습니다.',
+    },
   ],
   award: {
     year: '2024',
@@ -180,7 +278,7 @@ export const profile = {
     school: '순천향대학교',
     major: '컴퓨터소프트웨어 · 4년제 졸업',
   },
-  skills: ['React', 'TypeScript', 'JavaScript', 'Vue.js', 'Next.js', 'NestJS', 'HTML5', 'CSS', 'MySQL', 'Docker', 'Linux', 'Git', 'GitLab'],
+  skills: ['React', 'TypeScript', 'JavaScript', 'Vue.js', 'Next.js', 'NestJS', 'HTML5', 'CSS', 'MySQL', 'PostgreSQL', 'SQLite', 'Drizzle ORM', 'Docker', 'Linux', 'Git', 'GitLab'],
   aiUsage: [
     {
       title: '기능 구현 및 문제 해결',

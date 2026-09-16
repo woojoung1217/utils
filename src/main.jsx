@@ -40,6 +40,7 @@ function Header() {
       <a className="brand" href="#top">윤우중 이력서</a>
       <nav aria-label="주요 메뉴">
         <a href="#experience">경력</a>
+        <a href="#projects">프로젝트</a>
         <a href="#skills">기술</a>
         <a href="#ai-usage">AI 활용</a>
         <a href="#background">교육·수상</a>
@@ -151,18 +152,19 @@ function Experience() {
 
 function Skills() {
   const groups = [
-    { label: 'Frontend', items: ['React', 'TypeScript', 'JavaScript', 'Vue.js', 'Next.js', 'HTML5', 'CSS'] },
-    { label: 'Backend & Data', items: ['NestJS', 'MySQL'] },
-    { label: 'Release & Operations', items: ['Docker', 'Linux', 'Container Release', 'Environment Configuration', 'Log Monitoring', 'Internal Network Deployment'] },
-    { label: 'EMS & Engineering', items: ['InfoU', 'Modbus', 'P&ID', 'Tag Mapping', 'Internal Network Deployment', 'System Monitoring'] },
-    { label: 'Web Platform', items: ['TanStack Query', 'Vue i18n', 'Canvas', 'Chart.js', 'html2pdf'] },
+    { label: 'Frontend', items: ['React', 'TypeScript', 'JavaScript', 'Vue.js', 'Next.js', 'Zustand', 'TanStack Query', 'HTML5', 'CSS3', 'jQuery'] },
+    { label: 'Backend & Data', items: ['NestJS', 'Drizzle ORM', 'Prisma', 'MySQL', 'PostgreSQL', 'SQLite'] },
+    { label: 'Release & Operations', items: ['Docker', 'Linux', 'GitLab CI', 'NSIS', 'NSSM', 'Health Check', 'Internal Network Deployment'] },
+    { label: 'EMS & Engineering', items: ['XD Runtime', 'InfoU', 'Modbus', 'P&ID', 'Tag Mapping', 'Historian', 'System Monitoring'] },
+    { label: 'Web Platform', items: ['ECharts', 'Ant Design', 'Panda CSS', 'Vue i18n', 'Swiper', 'Canvas', 'Chart.js', 'D3', 'Vitest', 'html2pdf'] },
+    { label: 'Cloud & CI/CD', items: ['AWS S3', 'CloudFront', 'AWS EC2', 'Vercel', 'GitHub Actions'] },
     { label: 'AI & Productivity', items: ['GPT Integration', 'AI-assisted Development', 'Prompt Design', 'Result Validation'] },
     { label: 'Collaboration', items: ['Git', 'GitLab', 'Jira', 'Figma'] },
   ];
 
   return (
     <section className="resume-section" id="skills">
-      <SectionTitle number="03">기술 스택</SectionTitle>
+      <SectionTitle number="04">기술 스택</SectionTitle>
       <div className="skill-groups">
         {groups.map((group) => (
           <div className="skill-group" key={group.label}>
@@ -175,10 +177,33 @@ function Skills() {
   );
 }
 
+function PersonalProjects() {
+  return (
+    <section className="resume-section" id="projects">
+      <SectionTitle number="03">프로젝트 경험</SectionTitle>
+      <div className="personal-projects">
+        {profile.personalProjects.map((project) => (
+          <article className="personal-project" key={project.title}>
+            <div className="personal-project-head">
+              <time>{project.period}</time>
+              <div><h3>{project.title}</h3><p>{project.subtitle}</p></div>
+            </div>
+            <p className="personal-project-description">{project.description}</p>
+            <div className="outcomes">{project.outcomes.map((outcome) => <strong key={outcome}>{outcome}</strong>)}</div>
+            <h4>주요 기여</h4>
+            <ul>{project.contributions.map((item) => <li key={item}>{item}</li>)}</ul>
+            <div className="tags">{project.stack.map((tech) => <span key={tech}>{tech}</span>)}</div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function AIUsage() {
   return (
     <section className="resume-section ai-usage" id="ai-usage">
-      <SectionTitle number="04">AI 활용</SectionTitle>
+      <SectionTitle number="05">AI 활용</SectionTitle>
       <div>
         <p className="ai-lead">AI를 결과물의 대체재가 아닌, 개발 과정의 속도와 완성도를 높이는 도구로 활용합니다.</p>
         <div className="ai-list">
@@ -192,7 +217,7 @@ function AIUsage() {
 function Background() {
   return (
     <section className="resume-section" id="background">
-      <SectionTitle number="05">교육 · 활동 · 수상</SectionTitle>
+      <SectionTitle number="06">교육 · 활동 · 수상</SectionTitle>
       <div className="background-grid">
         <div>
           <h3 className="subsection-label">교육 및 활동</h3>
@@ -226,7 +251,7 @@ function Background() {
 function Introduction() {
   return (
     <section className="resume-section introduction">
-      <SectionTitle number="06">자기소개</SectionTitle>
+      <SectionTitle number="07">자기소개</SectionTitle>
       <div>
         <p className="intro-kicker">AI-ASSISTED · FULL-CYCLE DEVELOPMENT</p>
         <h3>AI를 활용해 더 빠르게 실행하고,<br />검증과 결과에는 직접 책임집니다.</h3>
@@ -247,7 +272,7 @@ function Footer() {
 }
 
 function App() {
-  return <><Header /><main><ProfileHeader /><CareerSummary /><Experience /><Skills /><AIUsage /><Background /><Introduction /></main><Footer /></>;
+  return <><Header /><main><ProfileHeader /><CareerSummary /><Experience /><PersonalProjects /><Skills /><AIUsage /><Background /><Introduction /></main><Footer /></>;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
